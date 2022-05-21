@@ -4,7 +4,7 @@ function isValidWord(target, min, max) {
     // base case
     if (max >= min) {
         // find center of search portion
-        let center = Math.floor((min + max) / 2);
+        const center = Math.floor((min + max) / 2);
 
         // check if center is target
         if (words[center] === target) {
