@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Game from "./components/Game";
 import isValidWord from "./components/isValidWord";
 
 class App extends React.Component {
@@ -11,7 +12,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {isValidWord("thomas", 0, this.maxIndex) ? "yes" : "no"}
+        <Game></Game>
+
+        {/* {isValidWord("gamers", 0, this.maxIndex) ? "yes" : "no"} */}
       </div>
     );
   }
