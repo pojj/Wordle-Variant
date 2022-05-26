@@ -5,29 +5,32 @@ import randomLetter from "./randomLetter";
 class Shop extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { shopLetters: [] };
-    console.log(this.props);
+    this.state = { shopLetters: [], key: 0 };
 
     this.roll = this.roll.bind(this);
   }
+
   roll() {
     let newShop = [];
+    let letterNum = this.state.key;
 
     for (let i = 0; i < this.props.shopSize; i++) {
-      newShop.push(<Letter value={randomLetter()} />);
+      newShop.push(<Letter value={randomLetter()} key={letterNum} />);
+      letterNum++;
     }
 
-    this.setState({ shopLetters: newShop });
+    this.setState({ shopLetters: newShop, key: letterNum });
   }
 
   buyLetter() {}
 
   render() {
-    this.roll();
+    console.log(this.state.shopLetters);
     return (
       <div>
         Shop gaming
         {this.state.shopLetters}
+        <button onClick={this.roll}>Roll</button>
       </div>
     );
   }

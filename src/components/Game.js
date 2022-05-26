@@ -12,10 +12,10 @@ class Game extends React.Component {
       shopSize: 5,
       arenaSize: 3,
       lexicon: [
-        <Letter key="1" value="A" />,
-        <Letter key="2" value="B" />,
-        <Letter key="3" value="C" />,
-        <Letter key="4" value="D" />,
+        // <Letter key="1" value="A" />,
+        // <Letter key="2" value="B" />,
+        // <Letter key="3" value="C" />,
+        // <Letter key="4" value="D" />,
       ],
     };
   }
