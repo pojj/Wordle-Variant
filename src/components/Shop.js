@@ -1,4 +1,5 @@
 import React from "react";
+import Letter from "./Letter";
 import randomLetter from "./randomLetter";
 
 class Shop extends React.Component {
@@ -6,21 +7,29 @@ class Shop extends React.Component {
     super(props);
     this.state = { shopLetters: [] };
     console.log(this.props);
+
+    this.roll = this.roll.bind(this);
   }
   roll() {
-    newShop = [];
+    let newShop = [];
 
-    for (let i; i < this.props.shopSize; i++) {
+    for (let i = 0; i < this.props.shopSize; i++) {
       newShop.push(<Letter value={randomLetter()} />);
     }
 
-    this.setState = { shopLetters: newShop };
+    this.setState({ shopLetters: newShop });
   }
 
   buyLetter() {}
 
   render() {
-    return <div>Shop gaming</div>;
+    this.roll();
+    return (
+      <div>
+        Shop gaming
+        {this.state.shopLetters}
+      </div>
+    );
   }
 }
 
