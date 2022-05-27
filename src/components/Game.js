@@ -2,9 +2,7 @@ import React from "react";
 import Arena from "./Arena";
 import Shop from "./Shop";
 import Letter from "./Letter";
-import DragDrop from "./DragDrop";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { DragDropContext } from "react-beautiful-dnd";
 
 class Game extends React.Component {
   constructor(props) {
@@ -22,6 +20,7 @@ class Game extends React.Component {
     };
     this.setLives = this.setLives.bind(this);
     this.setMoney = this.setMoney.bind(this);
+    this.onDragEnd = this.onDragEnd.bind(this);
   }
 
   setLives(newLives) {
@@ -32,21 +31,24 @@ class Game extends React.Component {
     this.setState({ money: newMoney });
   }
 
+  onDragEnd() {}
+
   addLetter(letter, index) {}
 
   sellLetter() {}
 
-  endTurn() {}
+  endTurn() {
+    //TODO: reorder stuff
+  }
 
   render() {
     return (
-      <DndProvider backend={HTML5Backend}>
+      <DragDropContext onDragEnd={this.onDragEnd}>
         {this.state.lives} helth, {this.state.money} monies
-        <DragDrop />
-        <Arena></Arena>
+        <Arena />
         {this.state.lexicon}
         <Shop {...this.state} setMoney={this.setMoney}></Shop>
-      </DndProvider>
+      </DragDropContext>
     );
   }
 }

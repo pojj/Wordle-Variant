@@ -2,6 +2,7 @@ import React from "react";
 import Letter from "./Letter";
 import randomLetter from "./randomLetter";
 import { Button } from "react-bootstrap";
+import { Droppable } from "react-beautiful-dnd";
 
 class Shop extends React.Component {
   constructor(props) {
@@ -33,7 +34,9 @@ class Shop extends React.Component {
   render() {
     return (
       <div>
-        {this.state.shopLetters}
+        <Droppable droppableId="shop">
+          {(provided) => this.state.shopLetters}
+        </Droppable>
         <br />
         <Button onClick={this.roll}>Roll</Button>
       </div>
