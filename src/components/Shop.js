@@ -1,6 +1,7 @@
 import React from "react";
 import Letter from "./Letter";
 import randomLetter from "./randomLetter";
+import { Button } from "react-bootstrap";
 
 class Shop extends React.Component {
   constructor(props) {
@@ -11,26 +12,30 @@ class Shop extends React.Component {
   }
 
   roll() {
-    let newShop = [];
-    let letterNum = this.state.key;
+    if (this.props.money > 0) {
+      let newShop = [];
+      let letterNum = this.state.key;
 
-    for (let i = 0; i < this.props.shopSize; i++) {
-      newShop.push(<Letter value={randomLetter()} key={letterNum} />);
-      letterNum++;
+      for (let i = 0; i < this.props.shopSize; i++) {
+        newShop.push(
+          <Letter className="letter" value={randomLetter()} key={letterNum} />
+        );
+        letterNum++;
+      }
+
+      this.props.setMoney(this.props.money - 1);
+      this.setState({ shopLetters: newShop, key: letterNum });
     }
-
-    this.setState({ shopLetters: newShop, key: letterNum });
   }
 
   buyLetter() {}
 
   render() {
-    console.log(this.state.shopLetters);
     return (
       <div>
-        Shop gaming
         {this.state.shopLetters}
-        <button onClick={this.roll}>Roll</button>
+        <br />
+        <Button onClick={this.roll}>Roll</Button>
       </div>
     );
   }
