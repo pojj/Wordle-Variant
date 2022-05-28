@@ -13,9 +13,9 @@ class Game extends React.Component {
       shopSize: 10,
       arenaSize: 3,
       lexicon: [
-        <Letter key="1" value="A" />,
-        <Letter key="2" value="B" />,
-        <Letter key="3" value="C" />,
+        // <Letter value="A" key="1" id="1" index="0" className="letter" />,
+        // <Letter value="B" key="2" id="2" index="1" className="letter" />,
+        // <Letter value="C" key="3" id="3" index="2" className="letter" />,
       ],
     };
     this.setLives = this.setLives.bind(this);
@@ -45,7 +45,6 @@ class Game extends React.Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         {this.state.lives} helth, {this.state.money} monies
-        <Arena />
         {this.state.lexicon}
         <Shop {...this.state} setMoney={this.setMoney}></Shop>
       </DragDropContext>

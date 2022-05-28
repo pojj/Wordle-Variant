@@ -1,5 +1,6 @@
 import React from "react";
 import "./Letter.css";
+import { Draggable } from "react-beautiful-dnd";
 
 class Letter extends React.Component {
   constructor(props) {
@@ -13,13 +14,23 @@ class Letter extends React.Component {
 
   render() {
     return (
-      <div className="letter">
-        <div className="value"> {this.state.value}</div>
-        <div className="stats">
-          <div className="dmg">{this.state.dmg}</div>
-          <div className="hp">{this.state.hp}</div>
-        </div>
-      </div>
+      <Draggable draggableId={this.props.id} index={this.props.index}>
+        {(provided) => (
+          <div
+            className="letter"
+            {...provided.draggableProps}
+            ref={provided.innerRef}
+          >
+            <div className="value" {...provided.dragHandleProps}>
+              {this.state.value}
+            </div>
+            <div className="stats">
+              <div className="dmg">{this.state.dmg}</div>
+              <div className="hp">{this.state.hp}</div>
+            </div>
+          </div>
+        )}
+      </Draggable>
     );
   }
 }
