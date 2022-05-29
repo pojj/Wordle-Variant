@@ -7,8 +7,8 @@ class Letter extends React.Component {
     super(props);
     this.state = {
       value: props.value,
-      hp: Math.floor(Math.random() * 99 + 1),
-      dmg: Math.floor(Math.random() * 99 + 1),
+      hp: props.hp,
+      dmg: props.dmg,
     };
   }
 

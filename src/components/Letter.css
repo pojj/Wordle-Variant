@@ -1,14 +1,13 @@
 .letter {
   margin: 5px;
   color: #ffffff;
-  display: inline-block;
-  user-select: none;
+  display: block;
 }
 .stats {
-  display: inline-block;
   width: 80px;
   -webkit-text-stroke: 1px black;
   font-size: 25px;
+  text-align: center;
   font-weight: bold;
   line-height: 35px;
 }

@@ -1,19 +1,13 @@
 import React from "react";
 import Arena from "./Arena";
-import Letter from "./Letter";
+import "./Game.css";
 import randomLetter from "./randomLetter";
 import { Button } from "react-bootstrap";
-import { Droppable } from "react-beautiful-dnd";
 
 class Shop extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      shopLetters: [], //[{ value: "A", id: "3", index: "0" }],
-      checked: 0,
-      id: "shop",
-      letterOrder: [],
-    };
+    this.state = { checked: 0 };
 
     this.roll = this.roll.bind(this);
   }
@@ -27,16 +21,15 @@ class Shop extends React.Component {
         let letter = {};
         letter.value = randomLetter();
         letter.id = letterNum;
-        letter.index = letterNum - this.state.checked;
+        letter.hp = Math.floor(Math.random() * 99 + 1);
+        letter.dmg = Math.floor(Math.random() * 99 + 1);
         letterNum++;
         newLetters.push(letter);
       }
 
       this.props.setMoney(this.props.money - 1);
-      this.setState({
-        shopLetters: newLetters,
-        checked: letterNum,
-      });
+      this.props.setShopLexicon(newLetters);
+      this.setState({ checked: letterNum });
     }
   }
 
@@ -45,9 +38,11 @@ class Shop extends React.Component {
   render() {
     return (
       <div>
-        <Arena letters={this.state.shopLetters} id={this.state.id}></Arena>
+        <Arena letters={this.props.shopLexicon} id="shop"></Arena>
         <br />
-        <Button onClick={this.roll}>Roll</Button>
+        <Button className="roll" onClick={this.roll}>
+          Roll
+        </Button>
       </div>
     );
   }

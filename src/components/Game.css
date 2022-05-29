@@ -1,0 +1,13 @@
+Game {
+  user-select: none;
+}
+.end {
+  float: right;
+  display: inline-flex;
+  padding: 5px;
+}
+
+.roll {
+  float: left;
+  display: inline-flex;
+}
