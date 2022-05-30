@@ -1,8 +1,8 @@
 import React from "react";
 import Arena from "./Arena";
-import "./Game.css";
 import randomLetter from "./randomLetter";
 import { Button } from "react-bootstrap";
+import "./Game.css";
 
 class Shop extends React.Component {
   constructor(props) {
@@ -32,8 +32,6 @@ class Shop extends React.Component {
       this.setState({ checked: letterNum });
     }
   }
-
-  buyLetter() {}
 
   render() {
     return (

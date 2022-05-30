@@ -1,5 +1,5 @@
 import React from "react";
-import "./Letter.css";
+import "./Game.css";
 import { Draggable } from "react-beautiful-dnd";
 
 class Letter extends React.Component {

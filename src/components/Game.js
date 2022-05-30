@@ -1,6 +1,7 @@
 import React from "react";
 import Arena from "./Arena";
 import Shop from "./Shop";
+import "./Game.css";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Button } from "react-bootstrap";
 
@@ -99,6 +100,8 @@ class Game extends React.Component {
         lexicon: newLex,
         shopLexicon: newShopLex,
       });
+    } else {
+      alert("you are broke");
     }
   }
 
@@ -132,7 +135,7 @@ class Game extends React.Component {
           shopLexicon={this.state.shopLexicon}
           setShopLexicon={this.setShopLexicon}
         />
-        <Button className="end" onClick={this.endTurn}>
+        <Button className="end-turn" onClick={this.endTurn}>
           End Turn
         </Button>
       </DragDropContext>
