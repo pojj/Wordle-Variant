@@ -101,7 +101,7 @@ class Game extends React.Component {
         shopLexicon: newShopLex,
       });
     } else {
-      alert("you are broke");
+      alert("You are broke");
     }
   }
 

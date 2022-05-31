@@ -30,6 +30,8 @@ class Shop extends React.Component {
       this.props.setMoney(this.props.money - 1);
       this.props.setShopLexicon(newLetters);
       this.setState({ checked: letterNum });
+    } else {
+      alert("You are broke");
     }
   }
 
