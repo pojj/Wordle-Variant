@@ -90,16 +90,20 @@ class Game extends React.Component {
 
   buyLetter(indexI, indexF) {
     if (this.state.money >= 3) {
-      const newLex = Array.from(this.state.lexicon);
-      const newShopLex = Array.from(this.state.shopLexicon);
-      const [movedLetter] = newShopLex.splice(indexI, 1);
-      movedLetter.index = indexF;
-      newLex.splice(indexF, 0, movedLetter);
-      this.setState({
-        money: this.state.money - 3,
-        lexicon: newLex,
-        shopLexicon: newShopLex,
-      });
+      if (this.state.lexicon.length < this.state.arenaSize) {
+        const newLex = Array.from(this.state.lexicon);
+        const newShopLex = Array.from(this.state.shopLexicon);
+        const [movedLetter] = newShopLex.splice(indexI, 1);
+        movedLetter.index = indexF;
+        newLex.splice(indexF, 0, movedLetter);
+        this.setState({
+          money: this.state.money - 3,
+          lexicon: newLex,
+          shopLexicon: newShopLex,
+        });
+      } else {
+        alert("Your lexicon is full!");
+      }
     } else {
       alert("You are broke");
     }
