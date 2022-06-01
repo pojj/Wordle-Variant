@@ -120,8 +120,10 @@ class Game extends React.Component {
         let letter = {};
         letter.value = randomLetter();
         letter.id = letterNum;
-        letter.hp = Math.floor(Math.random() * 99 + 1);
-        letter.dmg = Math.floor(Math.random() * 99 + 1);
+        letter.hp = Math.floor(Math.random() * this.props.randomMultiplier + 1);
+        letter.dmg = Math.floor(
+          Math.random() * this.props.randomMultiplier + 1
+        );
         letterNum++;
         newLetters.push(letter);
       }
@@ -140,10 +142,7 @@ class Game extends React.Component {
     for (let i = 0; i < this.state.lexicon.length; i++) {
       for (let j = i + 1; j <= this.state.lexicon.length; j++) {
         let test = lexicon.slice(i, j);
-        test = test
-          .map((letter) => letter.value)
-          .join("")
-          .toLowerCase();
+        test = test.map((letter) => letter.value).join("");
         if (isValidWord(test, 0, 279495)) {
           console.log(test);
         }
