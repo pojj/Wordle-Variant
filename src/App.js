@@ -1,12 +1,12 @@
 import React from "react";
-import "./App.css";
-import "./components/Game.css";
+import settings from "./settings";
 import Game from "./components/Game";
 
 function App() {
   return (
-    <div className="App">
-      <Game></Game>
+    <div>
+      {/* Give settings as props to the game */}
+      <Game {...settings}></Game>
     </div>
   );
 }

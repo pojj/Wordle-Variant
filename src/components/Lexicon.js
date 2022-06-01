@@ -2,7 +2,7 @@ import React from "react";
 import Letter from "./Letter";
 import { Droppable } from "react-beautiful-dnd";
 
-function Arena(props) {
+function Lexicon(props) {
   return (
     <Droppable droppableId={props.id} direction="horizontal">
       {(provided) => (
@@ -28,4 +28,4 @@ function Arena(props) {
   );
 }
 
-export default Arena;
+export default Lexicon;
