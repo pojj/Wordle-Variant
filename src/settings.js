@@ -4,9 +4,10 @@ const settings = {
   startingLexiconSize: 3,
   startingShopSize: 3,
   lexiconIncrementSize: 1,
-  shopIncrementSize: 0.2,
+  shopIncrementSize: 1,
   maxSize: 15, // The scrabble board is 15 by 15
   randomMultiplier: 2,
+  numWords: 279495,
   letter: {
     a: { dmg: 1, hp: 1 },
     b: { dmg: 1, hp: 1 },

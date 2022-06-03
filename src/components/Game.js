@@ -138,20 +138,24 @@ class Game extends React.Component {
   }
 
   buffLetters() {
-    const lexicon = this.state.lexicon;
+    const newLex = this.state.lexicon;
     for (let i = 0; i < this.state.lexicon.length; i++) {
       for (let j = i + 1; j <= this.state.lexicon.length; j++) {
-        let test = lexicon.slice(i, j);
-        test = test.map((letter) => letter.value).join("");
-        if (isValidWord(test, 0, 279495)) {
-          console.log(test);
+        let test = newLex.slice(i, j);
+        let word = test.map((letter) => letter.value).join("");
+        if (isValidWord(word, 0, this.props.numWords)) {
+          for (let k = i; k < j; k++) {
+            newLex[k].dmg *= word.length;
+            newLex[k].hp *= word.length;
+          }
         }
       }
     }
+    return newLex;
   }
 
   endTurn() {
-    this.buffLetters();
+    const newLex = this.buffLetters();
     // Single line conditional if size smaller than maxSize add increment else size gets maxed (15)
     const newLexiconSize =
       this.state.lexiconSize + this.props.lexiconIncrementSize <=
@@ -173,7 +177,8 @@ class Game extends React.Component {
       // I can't even remove this stupid anonymous function without it breaking >:(
       () => {
         this.roll();
-        console.log(this.state);
+        this.forceUpdate();
+        console.log(this.state.lexicon);
       }
     );
   }
