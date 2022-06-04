@@ -17,8 +17,8 @@ function Lexicon(props) {
               id={letter.id.toString()}
               index={index}
               key={letter.id}
-              hp={letter.hp}
               dmg={letter.dmg}
+              hp={letter.hp}
             />
           ))}
           {provided.placeholder}

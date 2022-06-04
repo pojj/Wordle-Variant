@@ -7,8 +7,8 @@ class Letter extends React.Component {
     super(props);
     this.state = {
       value: props.value,
-      hp: props.hp,
       dmg: props.dmg,
+      hp: props.hp,
     };
   }
 

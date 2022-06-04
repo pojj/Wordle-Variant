@@ -1,5 +1,6 @@
 import React from "react";
 import Lexicon from "./Lexicon";
+import Battle from "./Battle";
 import randomLetter from "./randomLetter";
 import isValidWord from "./isValidWord";
 import "./Game.css";
@@ -11,11 +12,13 @@ class Game extends React.Component {
     super(props);
 
     this.state = {
+      gameState: "buy",
       lives: props.startingLives,
       money: props.startingMoney + 1, // Give 1 extra money because the game rolls immediately after rendering
       lexiconSize: props.startingLexiconSize,
       shopSize: props.startingShopSize,
       lexicon: [],
+      buffedLexicon: [],
       shopLexicon: [],
       letterId: 0,
     };
@@ -28,7 +31,9 @@ class Game extends React.Component {
     this.roll = this.roll.bind(this);
     this.buffLetters = this.buffLetters.bind(this);
     this.endTurn = this.endTurn.bind(this);
+    this.setGameState = this.setGameState.bind(this);
   }
+
   componentDidMount() {
     this.roll();
   }
@@ -115,15 +120,15 @@ class Game extends React.Component {
   roll() {
     if (this.state.money > 0) {
       const newLetters = []; // const means variable cannot be redefined, can be modified.
+      const multiplier = this.props.randomMultiplier;
       let letterNum = this.state.letterId;
       for (let i = 0; i < this.state.shopSize; i++) {
         let letter = {};
         letter.value = randomLetter();
         letter.id = letterNum;
-        letter.hp = Math.floor(Math.random() * this.props.randomMultiplier + 1);
-        letter.dmg = Math.floor(
-          Math.random() * this.props.randomMultiplier + 1
-        );
+        const stats = this.props.letterStats[letter.value];
+        letter.dmg = Math.ceil(Math.random() * stats.dmg * multiplier);
+        letter.hp = Math.ceil(Math.random() * stats.hp * multiplier);
         letterNum++;
         newLetters.push(letter);
       }
@@ -138,15 +143,16 @@ class Game extends React.Component {
   }
 
   buffLetters() {
-    const newLex = this.state.lexicon;
+    const newLex = structuredClone(this.state.lexicon);
     for (let i = 0; i < this.state.lexicon.length; i++) {
       for (let j = i + 1; j <= this.state.lexicon.length; j++) {
         let test = newLex.slice(i, j);
         let word = test.map((letter) => letter.value).join("");
         if (isValidWord(word, 0, this.props.numWords)) {
+          console.log(word);
           for (let k = i; k < j; k++) {
-            newLex[k].dmg *= word.length;
-            newLex[k].hp *= word.length;
+            newLex[k].dmg += Math.pow(word.length, 2);
+            newLex[k].hp += Math.pow(word.length, 2);
           }
         }
       }
@@ -156,6 +162,7 @@ class Game extends React.Component {
 
   endTurn() {
     const newLex = this.buffLetters();
+
     // Single line conditional if size smaller than maxSize add increment else size gets maxed (15)
     const newLexiconSize =
       this.state.lexiconSize + this.props.lexiconIncrementSize <=
@@ -170,36 +177,51 @@ class Game extends React.Component {
     // This complex dumb thing makes it so React is forced to do a synchronous update
     this.setState(
       {
+        gameState: "battle",
         money: this.props.startingMoney + 1,
+        buffedLexicon: newLex,
         lexiconSize: newLexiconSize,
         shopSize: newShopSize,
       },
       // I can't even remove this stupid anonymous function without it breaking >:(
       () => {
-        this.roll();
-        this.forceUpdate();
-        console.log(this.state.lexicon);
+        this.roll(); // there is an inefficency here it renders once before this on the setState
+        // and again when this.roll is ran
       }
     );
   }
 
+  setGameState(newState) {
+    this.setState({ gameState: newState });
+  }
+
   render() {
-    return (
-      <div className="game">
-        {this.state.lives} helth, {this.state.money} monies
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Lexicon letters={this.state.lexicon} id="owned"></Lexicon>
-          <div style={{ border: "inherit" }}></div>
-          <Lexicon letters={this.state.shopLexicon} id="shop"></Lexicon>
-        </DragDropContext>
-        <Button className="roll" onClick={this.roll}>
-          Roll
-        </Button>
-        <Button className="end-turn" onClick={this.endTurn}>
-          End Turn
-        </Button>
-      </div>
-    );
+    console.log(this.state.gameState);
+    if (this.state.gameState === "buy") {
+      return (
+        <div className="game">
+          {this.state.lives} helth, {this.state.money} monies
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <Lexicon letters={this.state.lexicon} id="owned"></Lexicon>
+            <hr style={{ height: "10px", color: "green" }} />
+            <Lexicon letters={this.state.shopLexicon} id="shop"></Lexicon>
+          </DragDropContext>
+          <Button className="roll" onClick={this.roll}>
+            Roll
+          </Button>
+          <Button className="end-turn" onClick={this.endTurn}>
+            End Turn
+          </Button>
+        </div>
+      );
+    }
+    if (this.state.gameState === "battle") {
+      return (
+        <div className="game-b">
+          <Battle {...this.state} setGameState={this.setGameState} />
+        </div>
+      );
+    }
   }
 }
 
