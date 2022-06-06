@@ -8,7 +8,7 @@ class Battle extends React.Component {
     super(props);
     this.state = {
       lexicon: structuredClone(props.buffedLexicon),
-      opponentLexicon: structuredClone(props.lexicon),
+      opponentLexicon: structuredClone(saved[props.round-1].random]),
     };
     console.log(this.state);
 
