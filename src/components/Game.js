@@ -21,6 +21,7 @@ class Game extends React.Component {
       buffedLexicon: [],
       shopLexicon: [],
       letterId: 0,
+      round: 1,
     };
 
     this.onDragEnd = this.onDragEnd.bind(this);
@@ -182,6 +183,7 @@ class Game extends React.Component {
         buffedLexicon: newLex,
         lexiconSize: newLexiconSize,
         shopSize: newShopSize,
+        round: this.state.round + 1,
       },
       // I can't even remove this stupid anonymous function without it breaking >:(
       () => {
@@ -200,7 +202,8 @@ class Game extends React.Component {
     if (this.state.gameState === "buy") {
       return (
         <div className="game">
-          {this.state.lives} helth, {this.state.money} monies
+          {this.state.lives} helth, {this.state.money} monies, round:
+          {this.state.round}
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Lexicon letters={this.state.lexicon} id="owned"></Lexicon>
             <hr style={{ height: "10px", color: "green" }} />

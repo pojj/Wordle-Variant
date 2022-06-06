@@ -1,4 +1,4 @@
-import words from "./words";
+import words from "../data/words";
 
 function isValidWord(target, min, max) {
   // base case
