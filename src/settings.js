@@ -1,12 +1,13 @@
 const settings = {
   startingLives: 10,
-  startingMoney: 100,
-  startingLexiconSize: 15,
-  startingShopSize: 3,
-  lexiconIncrementSize: 1,
-  shopIncrementSize: 1,
-  maxSize: 15, // The scrabble board is 15 by 15
-  randomMultiplier: 2,
+  startingMoney: 10,
+  startingLexiconSize: 2.5,
+  startingShopSize: 2.8,
+  lexiconIncrementSize: 0.5,
+  shopIncrementSize: 0.2,
+  maxLexiconSize: 15, // The scrabble board is 15 by 15
+  maxShopSize: 5,
+  randomMultiplier: 1.5,
   numWords: 279495,
   letterStats: {
     A: { dmg: 6, hp: 6 },

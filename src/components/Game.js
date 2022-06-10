@@ -4,6 +4,7 @@ import Battle from "./Battle";
 import randomLetter from "./randomLetter";
 import isValidWord from "./isValidWord";
 import "./Game.css";
+import saved from "../data/savedLexicons";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Button } from "react-bootstrap";
 
@@ -32,7 +33,11 @@ class Game extends React.Component {
     this.roll = this.roll.bind(this);
     this.buffLetters = this.buffLetters.bind(this);
     this.endTurn = this.endTurn.bind(this);
+
+    // these are callback functions so battle can call back to game
     this.setGameState = this.setGameState.bind(this);
+    this.setLives = this.setLives.bind(this);
+    this.increaseRound = this.increaseRound.bind(this);
   }
 
   componentDidMount() {
@@ -144,7 +149,10 @@ class Game extends React.Component {
   }
 
   buffLetters() {
-    const newLex = structuredClone(this.state.lexicon);
+    // clone newLex only keeping revelant properties
+    const newLex = this.state.lexicon.map((item) => {
+      return { value: item.value, dmg: item.dmg, hp: item.hp, id: item.id };
+    });
     for (let i = 0; i < this.state.lexicon.length; i++) {
       for (let j = i + 1; j <= this.state.lexicon.length; j++) {
         let test = newLex.slice(i, j);
@@ -164,26 +172,28 @@ class Game extends React.Component {
   endTurn() {
     const newLex = this.buffLetters();
 
+    console.log(saved);
+
     // Single line conditional if size smaller than maxSize add increment else size gets maxed (15)
     const newLexiconSize =
       this.state.lexiconSize + this.props.lexiconIncrementSize <=
-      this.props.maxSize
+      this.props.maxLexiconSize
         ? this.state.lexiconSize + this.props.lexiconIncrementSize
-        : this.props.maxSize;
+        : this.props.maxLexiconSize;
     const newShopSize =
-      this.state.shopSize + this.props.shopIncrementSize <= this.props.maxSize
+      this.state.shopSize + this.props.shopIncrementSize <=
+      this.props.maxShopSize
         ? this.state.shopSize + this.props.shopIncrementSize
-        : this.props.maxSize;
+        : this.props.maxShopSize;
 
     // This complex dumb thing makes it so React is forced to do a synchronous update
     this.setState(
       {
-        gameState: "battle",
         money: this.props.startingMoney + 1,
         buffedLexicon: newLex,
         lexiconSize: newLexiconSize,
         shopSize: newShopSize,
-        round: this.state.round + 1,
+        gameState: "battle",
       },
       // I can't even remove this stupid anonymous function without it breaking >:(
       () => {
@@ -195,6 +205,14 @@ class Game extends React.Component {
 
   setGameState(newState) {
     this.setState({ gameState: newState });
+  }
+
+  setLives(newLives) {
+    this.setState({ lives: newLives });
+  }
+
+  increaseRound() {
+    this.setState({ round: this.state.round + 1 });
   }
 
   render() {
@@ -221,7 +239,12 @@ class Game extends React.Component {
     if (this.state.gameState === "battle") {
       return (
         <div className="game-b">
-          <Battle {...this.state} setGameState={this.setGameState} />
+          <Battle
+            {...this.state}
+            setGameState={this.setGameState}
+            setLives={this.setLives}
+            increaseRound={this.increaseRound}
+          />
         </div>
       );
     }

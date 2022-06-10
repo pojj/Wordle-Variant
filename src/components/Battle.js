@@ -6,11 +6,36 @@ import saved from "../data/savedLexicons";
 class Battle extends React.Component {
   constructor(props) {
     super(props);
+
+    // format enemy lexicon from saved battles
+    let round = props.round - 1;
+    if (saved[round] === undefined) {
+      round = saved.length - 1;
+    }
+    const oppLex = structuredClone(
+      saved[round][Math.floor(Math.random() * saved[round].length)]
+    );
+
+    for (let id = 0; id < oppLex.length; id++) {
+      oppLex[id].id = -id - 1;
+    }
+
     this.state = {
       lexicon: structuredClone(props.buffedLexicon),
-      opponentLexicon: structuredClone(saved[props.round-1].random]),
+      opponentLexicon: oppLex,
     };
-    console.log(this.state);
+
+    // add current lexicon to saved
+    const saveIt = props.buffedLexicon.map((letter) => ({
+      value: letter.value,
+      dmg: letter.dmg,
+      hp: letter.hp,
+    }));
+    if (saved[props.round - 1]) {
+      saved[props.round - 1].push(saveIt);
+    } else {
+      saved[props.round - 1] = [saveIt];
+    }
 
     this.checkWin = this.checkWin.bind(this);
   }
@@ -21,23 +46,24 @@ class Battle extends React.Component {
   }
 
   checkWin() {
+    let endBattle = false;
     if (
       this.state.lexicon.length <= 0 &&
       this.state.opponentLexicon.length <= 0
     ) {
       alert("Tie!");
-      this.props.setGameState("buy");
-      return;
-    }
-    if (this.state.opponentLexicon.length <= 0) {
+      endBattle = true;
+    } else if (this.state.opponentLexicon.length <= 0) {
       alert("You win!");
-      this.props.setGameState("buy");
-      return;
-    }
-    if (this.state.lexicon.length <= 0) {
+      endBattle = true;
+    } else if (this.state.lexicon.length <= 0) {
       alert("You lose!");
+      this.props.setLives(this.props.lives - 1);
+      endBattle = true;
+    }
+    if (endBattle) {
+      this.props.increaseRound();
       this.props.setGameState("buy");
-      return;
     }
   }
 
