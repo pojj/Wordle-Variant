@@ -1,12 +1,12 @@
 const settings = {
   startingLives: 10,
   startingMoney: 10,
-  startingLexiconSize: 2.5,
-  startingShopSize: 2.8,
-  lexiconIncrementSize: 0.5,
+  startingLexiconSize: 5,
+  lexiconIncrementSize: 1,
+  startingShopSize: 2.2, // Math.ceil is run to ensure everything is 100% predictable
   shopIncrementSize: 0.2,
   maxLexiconSize: 15, // The scrabble board is 15 by 15
-  maxShopSize: 5,
+  maxShopSize: 5, // Don't go over 14 because freezer takes up one
   randomMultiplier: 1.5,
   numWords: 279495,
   letterStats: {

@@ -10,6 +10,7 @@ function Lexicon(props) {
           className="lexicon"
           ref={provided.innerRef}
           {...provided.droppableProps}
+          id={props.id}
         >
           {props.letters.map((letter, index) => (
             <Letter

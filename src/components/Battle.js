@@ -7,7 +7,7 @@ class Battle extends React.Component {
   constructor(props) {
     super(props);
 
-    // format enemy lexicon from saved battles
+    // Format enemy lexicon from saved battles
     let round = props.round - 1;
     if (saved[round] === undefined) {
       round = saved.length - 1;
@@ -25,7 +25,7 @@ class Battle extends React.Component {
       opponentLexicon: oppLex,
     };
 
-    // add current lexicon to saved
+    // Add current lexicon to saved
     const saveIt = props.buffedLexicon.map((letter) => ({
       value: letter.value,
       dmg: letter.dmg,
@@ -41,7 +41,7 @@ class Battle extends React.Component {
   }
 
   componentDidMount() {
-    // check win/lose right when battle starts in case user has no letters
+    // Check win/lose right when battle starts in case user has no letters
     this.checkWin();
   }
 
@@ -114,7 +114,7 @@ class Battle extends React.Component {
         </div>
         <Button
           className="end-turn"
-          onClick={() => this.attack()} // do not remove the anonymous function otherwise it will break
+          onClick={() => this.attack()} // Do not remove the anonymous function otherwise it will break
         >
           Attack
         </Button>
