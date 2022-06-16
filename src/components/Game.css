@@ -7,6 +7,28 @@
   overflow: auto;
   user-select: none;
 }
+.stats-bar {
+  display: inline-flex;
+  background-color: grey;
+  height: 50px;
+  margin: 10px;
+  padding: 10px;
+  font-size: 40px;
+  line-height: 27px;
+  justify-content: end;
+}
+#money {
+  width: 100px;
+}
+#lives {
+  width: 100px;
+}
+#wins {
+  width: 150px;
+}
+#round {
+  width: 100px;
+}
 .roll {
   float: left;
 }

@@ -6,7 +6,7 @@ import isValidWord from "./isValidWord";
 import "./Game.css";
 import saved from "../data/savedLexicons";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Button } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 
 class Game extends React.Component {
   constructor(props) {
@@ -25,6 +25,7 @@ class Game extends React.Component {
       buffedLexicon: [],
       letterId: 0,
       round: 1,
+      wins: 0,
     };
 
     // These handle what happens at end of drags
@@ -46,6 +47,7 @@ class Game extends React.Component {
     // These are callback functions so battle can call back to game
     this.setGameState = this.setGameState.bind(this);
     this.increaseRound = this.increaseRound.bind(this);
+    this.increaseWins = this.increaseWins.bind(this);
     this.setLives = this.setLives.bind(this);
   }
 
@@ -298,6 +300,9 @@ class Game extends React.Component {
   increaseRound() {
     this.setState({ round: this.state.round + 1 });
   }
+  increaseWins() {
+    this.setState({ wins: this.state.wins + 1 });
+  }
   setLives(newLives) {
     this.setState({ lives: newLives });
   }
@@ -307,8 +312,25 @@ class Game extends React.Component {
     if (this.state.gameState === "buy") {
       return (
         <div className="game">
-          {this.state.lives} helth, {this.state.money} monies, round:
-          {this.state.round}
+          <div>
+            <div className="stats-bar" id="money">
+              <Image />
+              {this.state.money}
+            </div>
+            <div className="stats-bar" id="lives">
+              {this.state.lives}
+            </div>
+            <div className="stats-bar" id="wins">
+              {this.state.wins}/10
+            </div>
+            <div className="stats-bar" id="round">
+              {this.state.round}
+            </div>
+          </div>
+          {/* {this.state.money} monies, {this.state.lives} helth, wins:
+          {this.state.wins}
+          /10 round:
+          {this.state.round} */}
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Lexicon letters={this.state.lexicon} id="owned" />
             <div>
@@ -335,8 +357,9 @@ class Game extends React.Component {
           <Battle
             {...this.state}
             setGameState={this.setGameState}
-            setLives={this.setLives}
             increaseRound={this.increaseRound}
+            increaseWins={this.increaseWins}
+            setLives={this.setLives}
           />
         </div>
       );

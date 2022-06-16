@@ -55,10 +55,11 @@ class Battle extends React.Component {
       endBattle = true;
     } else if (this.state.opponentLexicon.length <= 0) {
       alert("You win!");
+      this.props.increaseWins();
       endBattle = true;
     } else if (this.state.lexicon.length <= 0) {
       alert("You lose!");
-      this.props.setLives(this.props.lives - 1);
+      this.props.setLives(this.props.lives - Math.ceil(this.props.round / 2));
       endBattle = true;
     }
     if (endBattle) {
