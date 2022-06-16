@@ -9,22 +9,28 @@
 }
 .stats-bar {
   display: inline-flex;
-  background-color: grey;
+  background-color: white;
+  border: 7px black double;
+  border-radius: 10px;
   height: 50px;
   margin: 10px;
-  padding: 10px;
+  padding: 3px;
+}
+.stat-number {
+  text-align: right;
+  width: 100%;
   font-size: 40px;
-  line-height: 27px;
-  justify-content: end;
+  line-height: 25px;
+  font-weight: 500;
 }
 #money {
-  width: 100px;
+  width: 95px;
 }
 #lives {
-  width: 100px;
+  width: 95px;
 }
 #wins {
-  width: 150px;
+  width: 145px;
 }
 #round {
   width: 100px;

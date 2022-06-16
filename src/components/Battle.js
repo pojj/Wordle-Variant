@@ -1,6 +1,6 @@
 import React from "react";
 import "./Game.css";
-import { Button } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import saved from "../data/savedLexicons";
 
 class Battle extends React.Component {
@@ -9,7 +9,7 @@ class Battle extends React.Component {
 
     // Format enemy lexicon from saved battles
     let round = props.round - 1;
-    if (saved[round] === undefined) {
+    if (!saved[round]) {
       round = saved.length - 1;
     }
     const oppLex = structuredClone(
@@ -26,15 +26,17 @@ class Battle extends React.Component {
     };
 
     // Add current lexicon to saved
-    const saveIt = props.buffedLexicon.map((letter) => ({
-      value: letter.value,
-      dmg: letter.dmg,
-      hp: letter.hp,
-    }));
-    if (saved[props.round - 1]) {
-      saved[props.round - 1].push(saveIt);
-    } else {
-      saved[props.round - 1] = [saveIt];
+    if (props.buffedLexicon.length) {
+      const saveIt = props.buffedLexicon.map((letter) => ({
+        value: letter.value,
+        dmg: letter.dmg,
+        hp: letter.hp,
+      }));
+      if (saved[props.round - 1]) {
+        saved[props.round - 1].push(saveIt);
+      } else {
+        saved[props.round - 1] = [saveIt];
+      }
     }
 
     this.checkWin = this.checkWin.bind(this);
@@ -89,7 +91,24 @@ class Battle extends React.Component {
   render() {
     return (
       <div className="game">
-        {this.props.lives} helth
+        <div>
+          <div className="stats-bar" id="money">
+            <Image src="/Gold.png" />
+            <h1 className="stat-number">{this.state.money}</h1>
+          </div>
+          <div className="stats-bar" id="lives">
+            <Image src="/Heart.png" />
+            <h1 className="stat-number">{this.state.lives}</h1>
+          </div>
+          <div className="stats-bar" id="wins">
+            <Image src="/Trophy.png" />
+            <h1 className="stat-number">{this.state.wins}/10</h1>
+          </div>
+          <div className="stats-bar" id="round">
+            <Image src="/Hourglass.png" />
+            <h1 className="stat-number">{this.state.round}</h1>
+          </div>
+        </div>
         <div className="lexicon">
           {this.state.lexicon.map((letter) => (
             <div className="letter" key={letter.id}>

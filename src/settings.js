@@ -1,7 +1,7 @@
 const settings = {
   startingLives: 10,
   startingMoney: 10,
-  startingLexiconSize: 5,
+  startingLexiconSize: 6,
   lexiconIncrementSize: 1,
   startingShopSize: 2.2, // Math.ceil is run to ensure everything is 100% predictable
   shopIncrementSize: 0.2,
@@ -31,7 +31,7 @@ const settings = {
     S: { dmg: 4, hp: 2 },
     T: { dmg: 5, hp: 9 },
     U: { dmg: 6, hp: 6 },
-    V: { dmg: 30, hp: 3 },
+    V: { dmg: 15, hp: 15 },
     W: { dmg: 20, hp: 15 },
     X: { dmg: 20, hp: 20 },
     Y: { dmg: 8, hp: 8 },

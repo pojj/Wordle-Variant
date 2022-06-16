@@ -314,17 +314,20 @@ class Game extends React.Component {
         <div className="game">
           <div>
             <div className="stats-bar" id="money">
-              <Image />
-              {this.state.money}
+              <Image src="/Gold.png" />
+              <h1 className="stat-number">{this.state.money}</h1>
             </div>
             <div className="stats-bar" id="lives">
-              {this.state.lives}
+              <Image src="/Heart.png" />
+              <h1 className="stat-number">{this.state.lives}</h1>
             </div>
             <div className="stats-bar" id="wins">
-              {this.state.wins}/10
+              <Image src="/Trophy.png" />
+              <h1 className="stat-number">{this.state.wins}/10</h1>
             </div>
             <div className="stats-bar" id="round">
-              {this.state.round}
+              <Image src="/Hourglass.png" />
+              <h1 className="stat-number">{this.state.round}</h1>
             </div>
           </div>
           {/* {this.state.money} monies, {this.state.lives} helth, wins:
