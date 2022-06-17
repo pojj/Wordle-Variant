@@ -1,5 +1,6 @@
 import React from "react";
 import "./Game.css";
+import StatsBar from "./StatsBar";
 import { Button, Image } from "react-bootstrap";
 import saved from "../data/savedLexicons";
 
@@ -91,24 +92,7 @@ class Battle extends React.Component {
   render() {
     return (
       <div className="game">
-        <div>
-          <div className="stats-bar" id="money">
-            <Image src="/Gold.png" />
-            <h1 className="stat-number">{this.state.money}</h1>
-          </div>
-          <div className="stats-bar" id="lives">
-            <Image src="/Heart.png" />
-            <h1 className="stat-number">{this.state.lives}</h1>
-          </div>
-          <div className="stats-bar" id="wins">
-            <Image src="/Trophy.png" />
-            <h1 className="stat-number">{this.state.wins}/10</h1>
-          </div>
-          <div className="stats-bar" id="round">
-            <Image src="/Hourglass.png" />
-            <h1 className="stat-number">{this.state.round}</h1>
-          </div>
-        </div>
+        <StatsBar {...this.props} />
         <div className="lexicon">
           {this.state.lexicon.map((letter) => (
             <div className="letter" key={letter.id}>

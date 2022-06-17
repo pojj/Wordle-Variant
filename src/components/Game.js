@@ -3,10 +3,11 @@ import Lexicon from "./Lexicon";
 import Battle from "./Battle";
 import randomLetter from "./randomLetter";
 import isValidWord from "./isValidWord";
+import StatsBar from "./StatsBar";
 import "./Game.css";
 import saved from "../data/savedLexicons";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Button, Image } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 class Game extends React.Component {
   constructor(props) {
@@ -312,30 +313,14 @@ class Game extends React.Component {
     if (this.state.gameState === "buy") {
       return (
         <div className="game">
-          <div>
-            <div className="stats-bar" id="money">
-              <Image src="/Gold.png" />
-              <h1 className="stat-number">{this.state.money}</h1>
-            </div>
-            <div className="stats-bar" id="lives">
-              <Image src="/Heart.png" />
-              <h1 className="stat-number">{this.state.lives}</h1>
-            </div>
-            <div className="stats-bar" id="wins">
-              <Image src="/Trophy.png" />
-              <h1 className="stat-number">{this.state.wins}/10</h1>
-            </div>
-            <div className="stats-bar" id="round">
-              <Image src="/Hourglass.png" />
-              <h1 className="stat-number">{this.state.round}</h1>
-            </div>
-          </div>
-          {/* {this.state.money} monies, {this.state.lives} helth, wins:
-          {this.state.wins}
-          /10 round:
-          {this.state.round} */}
+          <StatsBar {...this.state} />
+          <div style={{ height: "230px" }} />
           <DragDropContext onDragEnd={this.onDragEnd}>
-            <Lexicon letters={this.state.lexicon} id="owned" />
+            <Lexicon
+              letters={this.state.lexicon}
+              id="owned"
+              style={{ width: "" + 1 * 90 }}
+            />
             <div>
               {this.state.lexicon.length}/{Math.ceil(this.state.lexiconSize)}
             </div>

@@ -2,10 +2,15 @@
 .game {
   margin: auto;
   width: 1376px;
+  height: 800px;
   border: 3px solid green;
   padding: 10px;
   overflow: auto;
   user-select: none;
+  background-image: url("/public/Field.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 .stats-bar {
   display: inline-flex;
@@ -48,7 +53,13 @@
   height: 130px;
 }
 #owned {
-  background-color: lightyellow;
+  background-image: url("/public/Rock.png");
+  background-size: cover;
+  background-position: 0px -50px;
+  background-size: 90px 200%;
+  background-repeat: repeat-x;
+  https: //thumbs.dreamstime.com/b/rock-stone-cartoon-banner-square-interface-game-panel-solid-stony-mineral-big-boulder-concrete-signboard-granite-wall-natural-156431552.jpg
+;
 }
 #freezer {
   display: inline-flex;
