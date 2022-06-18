@@ -319,7 +319,7 @@ class Game extends React.Component {
             <Lexicon
               letters={this.state.lexicon}
               id="owned"
-              style={{ width: "" + 1 * 90 }}
+              size={Math.ceil(this.state.lexiconSize)}
             />
             <div>
               {this.state.lexicon.length}/{Math.ceil(this.state.lexiconSize)}
@@ -327,7 +327,11 @@ class Game extends React.Component {
             <hr style={{ height: "10px", color: "green" }} />
             <div>Freezer {this.state.freezer.length}/3:</div>
             <Lexicon letters={this.state.freezer} id="freezer" />
-            <Lexicon letters={this.state.shopLexicon} id="shop" />
+            <Lexicon
+              letters={this.state.shopLexicon}
+              id="shop"
+              size={Math.ceil(this.state.shopSize)}
+            />
           </DragDropContext>
           <div style={{ height: "10px" }} />
           <Button className="roll" onClick={this.roll}>

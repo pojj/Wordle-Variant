@@ -55,21 +55,24 @@
 #owned {
   background-image: url("/public/Rock.png");
   background-size: cover;
-  background-position: 0px -50px;
-  background-size: 90px 200%;
+  background-position: 0px 40px;
+  background-size: 90px 60px;
   background-repeat: repeat-x;
-  https: //thumbs.dreamstime.com/b/rock-stone-cartoon-banner-square-interface-game-panel-solid-stony-mineral-big-boulder-concrete-signboard-granite-wall-natural-156431552.jpg
-;
 }
 #freezer {
   display: inline-flex;
-  background-color: lightskyblue;
+  /* background-color: lightskyblue; */
   vertical-align: top;
   min-width: 90px;
 }
 #shop {
   display: inline-flex;
   vertical-align: top;
+  background-image: url("/public/Rock.png");
+  background-size: cover;
+  background-position: 0px 40px;
+  background-size: 90px 60px;
+  background-repeat: repeat-x;
 }
 
 /* Letter object */

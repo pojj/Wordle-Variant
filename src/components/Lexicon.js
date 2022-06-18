@@ -11,6 +11,7 @@ function Lexicon(props) {
           ref={provided.innerRef}
           {...provided.droppableProps}
           id={props.id}
+          style={{ width: props.size * 90 + "px" }}
         >
           {props.letters.map((letter, index) => (
             <Letter
