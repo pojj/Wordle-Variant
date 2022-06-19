@@ -7,7 +7,8 @@ import StatsBar from "./StatsBar";
 import "./Game.css";
 import saved from "../data/savedLexicons";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Button } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 class Game extends React.Component {
   constructor(props) {
@@ -130,10 +131,16 @@ class Game extends React.Component {
           shopLexicon: newShop,
         });
       } else {
-        alert("Your lexicon is full!");
+        Swal.fire({
+          icon: "warning",
+          title: "Lexicon is full",
+        });
       }
     } else {
-      alert("You are broke!");
+      Swal.fire({
+        icon: "warning",
+        title: "Insufficent funds",
+      });
     }
   }
 
@@ -150,10 +157,16 @@ class Game extends React.Component {
           freezer: newFreezer,
         });
       } else {
-        alert("Your lexicon is full!");
+        Swal.fire({
+          icon: "warning",
+          title: "Lexicon is full",
+        });
       }
     } else {
-      alert("You are broke!");
+      Swal.fire({
+        icon: "warning",
+        title: "Insufficent funds",
+      });
     }
   }
 
@@ -181,7 +194,10 @@ class Game extends React.Component {
         freezer: newFreezer,
       });
     } else {
-      alert("Your freezer is full!");
+      Swal.fire({
+        icon: "warning",
+        title: "Freezer is full",
+      });
     }
   }
 
@@ -196,7 +212,10 @@ class Game extends React.Component {
         freezer: newFreezer,
       });
     } else {
-      alert("Your freezer is full!");
+      Swal.fire({
+        icon: "warning",
+        title: "Freezer is full",
+      });
     }
   }
 
@@ -236,7 +255,10 @@ class Game extends React.Component {
         letterId: letterNum,
       });
     } else {
-      alert("You are broke!");
+      Swal.fire({
+        icon: "warning",
+        title: "Insufficent funds",
+      });
     }
   }
 
@@ -309,7 +331,28 @@ class Game extends React.Component {
   }
 
   render() {
-    console.log(this.state.gameState);
+    if (this.state.wins >= 7) {
+      Swal.fire({
+        icon: "success",
+        title: "Good Job",
+        text: "You win!",
+        footer: '<a href="">Play Again?</a>',
+        showConfirmButton: false,
+        allowOutsideClick: false,
+      });
+      return;
+    }
+    if (this.state.lives <= 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Game Over",
+        text: "Better luck next time!",
+        footer: '<a href="">Play Again?</a>',
+        showConfirmButton: false,
+        allowOutsideClick: false,
+      });
+      return;
+    }
     if (this.state.gameState === "buy") {
       return (
         <div className="game">
@@ -321,23 +364,40 @@ class Game extends React.Component {
               id="owned"
               size={Math.ceil(this.state.lexiconSize)}
             />
-            <div>
-              {this.state.lexicon.length}/{Math.ceil(this.state.lexiconSize)}
+            <div style={{ height: "95px" }}>
+              <Image
+                src="/FreezerSign.png"
+                className="signs"
+                style={{ marginRight: "120px" }}
+              ></Image>
+              <Image src="/ShopSign.png" className="signs"></Image>
             </div>
-            <hr style={{ height: "10px", color: "green" }} />
-            <div>Freezer {this.state.freezer.length}/3:</div>
             <Lexicon letters={this.state.freezer} id="freezer" />
             <Lexicon
               letters={this.state.shopLexicon}
               id="shop"
-              size={Math.ceil(this.state.shopSize)}
+              size={
+                Math.ceil(this.state.shopSize - this.state.freezer.length) > 0
+                  ? Math.ceil(this.state.shopSize - this.state.freezer.length)
+                  : 0.05
+              }
             />
           </DragDropContext>
-          <div style={{ height: "10px" }} />
-          <Button className="roll" onClick={this.roll}>
+          <div style={{ height: "70px" }} />
+          <Button
+            className="roll"
+            onClick={this.roll}
+            size="lg"
+            variant="success"
+          >
             Roll
           </Button>
-          <Button className="end-turn" onClick={this.endTurn}>
+          <Button
+            className="end-turn"
+            onClick={this.endTurn}
+            size="lg"
+            variant="success"
+          >
             End Turn
           </Button>
         </div>
@@ -345,15 +405,13 @@ class Game extends React.Component {
     }
     if (this.state.gameState === "battle") {
       return (
-        <div className="game-b">
-          <Battle
-            {...this.state}
-            setGameState={this.setGameState}
-            increaseRound={this.increaseRound}
-            increaseWins={this.increaseWins}
-            setLives={this.setLives}
-          />
-        </div>
+        <Battle
+          {...this.state}
+          setGameState={this.setGameState}
+          increaseRound={this.increaseRound}
+          increaseWins={this.increaseWins}
+          setLives={this.setLives}
+        />
       );
     }
   }

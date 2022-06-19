@@ -6,8 +6,8 @@ const settings = {
   startingShopSize: 2.2, // Math.ceil is run to ensure everything is 100% predictable
   shopIncrementSize: 0.2,
   maxLexiconSize: 15, // The scrabble board is 15 by 15
-  maxShopSize: 5, // Don't go over 14 because freezer takes up one
-  randomMultiplier: 2,
+  maxShopSize: 5, // Don't go over 12 because freezer takes up 3
+  randomMultiplier: 1.5,
   numWords: 279495,
   letterStats: {
     A: { dmg: 2, hp: 3 },

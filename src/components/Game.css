@@ -5,7 +5,7 @@
   height: 800px;
   border: 3px solid green;
   padding: 10px;
-  overflow: auto;
+  overflow: hidden;
   user-select: none;
   background-image: url("/public/Field.png");
   background-size: cover;
@@ -35,7 +35,7 @@
   width: 95px;
 }
 #wins {
-  width: 145px;
+  width: 125px;
 }
 #round {
   width: 100px;
@@ -46,6 +46,9 @@
 .end-turn {
   float: right;
 }
+.signs {
+  height: 95px;
+}
 
 /* Lexicon object */
 .lexicon {
@@ -55,22 +58,31 @@
 #owned {
   background-image: url("/public/Rock.png");
   background-size: cover;
-  background-position: 0px 40px;
+  background-position: 0px 45px;
   background-size: 90px 60px;
   background-repeat: repeat-x;
 }
 #freezer {
   display: inline-flex;
-  /* background-color: lightskyblue; */
   vertical-align: top;
-  min-width: 90px;
+  min-width: 270px;
+}
+#freezer::after {
+  position: absolute;
+  content: "";
+  width: 270px;
+  height: 90px;
+  pointer-events: none;
+  background-image: url("/public/Freezer.png");
+  background-repeat: repeat-x;
+  background-size: 90px 90px;
 }
 #shop {
   display: inline-flex;
   vertical-align: top;
   background-image: url("/public/Rock.png");
   background-size: cover;
-  background-position: 0px 40px;
+  background-position: 0px 45px;
   background-size: 90px 60px;
   background-repeat: repeat-x;
 }
@@ -111,4 +123,94 @@
   background-image: url("/public/Heart.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+/* Battle object */
+.lexicon.opponent {
+  animation: approach 1s;
+}
+@keyframes approach {
+  0% {
+    transform: translate(1500px, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+.letter.owned {
+  animation: down 0.3s;
+}
+@keyframes down {
+  0% {
+    transform: translate(0px, 5px);
+  }
+  10% {
+    transform: translate(0px, 10px);
+  }
+  20% {
+    transform: translate(0px, 15px);
+  }
+  30% {
+    transform: translate(0px, 30px);
+  }
+  40% {
+    transform: translate(0px, 60px);
+  }
+  50% {
+    transform: translate(0px, 150px);
+  }
+  60% {
+    transform: translate(0px, 60px);
+  }
+  70% {
+    transform: translate(0px, 30px);
+  }
+  80% {
+    transform: translate(0px, 15px);
+  }
+  90% {
+    transform: translate(0px, 5px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+.letter.opponent {
+  animation: up 0.3s;
+}
+@keyframes up {
+  0% {
+    transform: translate(0px, -5px);
+  }
+  10% {
+    transform: translate(0px, -10px);
+  }
+  20% {
+    transform: translate(0px, -15px);
+  }
+  30% {
+    transform: translate(0px, -30px);
+  }
+  40% {
+    transform: translate(0px, -60px);
+  }
+  50% {
+    transform: translate(0px, -150px);
+  }
+  60% {
+    transform: translate(0px, -60px);
+  }
+  70% {
+    transform: translate(0px, -30px);
+  }
+  80% {
+    transform: translate(0px, -15px);
+  }
+  90% {
+    transform: translate(0px, -5px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
 }

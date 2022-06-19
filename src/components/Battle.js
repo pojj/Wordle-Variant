@@ -3,6 +3,7 @@ import "./Game.css";
 import StatsBar from "./StatsBar";
 import { Button, Image } from "react-bootstrap";
 import saved from "../data/savedLexicons";
+import Swal from "sweetalert2";
 
 class Battle extends React.Component {
   constructor(props) {
@@ -40,12 +41,51 @@ class Battle extends React.Component {
       }
     }
 
+    this.animate = this.animate.bind(this);
+    this.attack = this.attack.bind(this);
     this.checkWin = this.checkWin.bind(this);
   }
 
-  componentDidMount() {
-    // Check win/lose right when battle starts in case user has no letters
-    this.checkWin();
+  animate() {
+    if (
+      this.state.lexicon.length > 0 &&
+      this.state.opponentLexicon.length > 0
+    ) {
+      const newLex = this.state.lexicon;
+      const oppLex = this.state.opponentLexicon;
+      newLex[0].class = "owned";
+      oppLex[0].class = "opponent";
+
+      this.setState({ lexicon: newLex, opponentLexicon: oppLex });
+      setTimeout(() => {
+        this.attack();
+      }, 300);
+    } else {
+      this.checkWin();
+    }
+  }
+
+  attack() {
+    if (
+      this.state.lexicon.length > 0 &&
+      this.state.opponentLexicon.length > 0
+    ) {
+      const newLex = this.state.lexicon;
+      const oppLex = this.state.opponentLexicon;
+      newLex[0].hp -= oppLex[0].dmg;
+      oppLex[0].hp -= newLex[0].dmg;
+      newLex[0].class = "null";
+      oppLex[0].class = "null";
+
+      if (newLex[0].hp <= 0) {
+        newLex.shift();
+      }
+      if (oppLex[0].hp <= 0) {
+        oppLex.shift();
+      }
+      this.setState({ lexicon: newLex, opponentLexicon: oppLex });
+      this.checkWin();
+    }
   }
 
   checkWin() {
@@ -54,14 +94,26 @@ class Battle extends React.Component {
       this.state.lexicon.length <= 0 &&
       this.state.opponentLexicon.length <= 0
     ) {
-      alert("Tie!");
+      Swal.fire({
+        icon: "info",
+        title: "You tied",
+        text: "(You don't lose lives or gain trophies)",
+      });
       endBattle = true;
     } else if (this.state.opponentLexicon.length <= 0) {
-      alert("You win!");
+      Swal.fire({
+        icon: "info",
+        title: "You won the round",
+        text: "(You gained a trophy)",
+      });
       this.props.increaseWins();
       endBattle = true;
     } else if (this.state.lexicon.length <= 0) {
-      alert("You lose!");
+      Swal.fire({
+        icon: "info",
+        title: "You lost the round",
+        text: "(You lost lives)",
+      });
       this.props.setLives(this.props.lives - Math.ceil(this.props.round / 2));
       endBattle = true;
     }
@@ -71,31 +123,19 @@ class Battle extends React.Component {
     }
   }
 
-  attack() {
-    const newLex = this.state.lexicon;
-    const oppLex = this.state.opponentLexicon;
-
-    newLex[0].hp -= oppLex[0].dmg;
-    oppLex[0].hp -= newLex[0].dmg;
-
-    if (newLex[0].hp <= 0) {
-      newLex.shift();
-    }
-    if (oppLex[0].hp <= 0) {
-      oppLex.shift();
-    }
-
-    this.setState({ lexicon: newLex, opponentLexicon: oppLex });
-    this.checkWin();
-  }
-
   render() {
     return (
       <div className="game">
         <StatsBar {...this.props} />
+
+        <div style={{ height: "230px" }} />
+
         <div className="lexicon">
           {this.state.lexicon.map((letter) => (
-            <div className="letter" key={letter.id}>
+            <div
+              className={letter.class === "owned" ? "letter owned" : "letter"}
+              key={letter.id}
+            >
               <div className="value">{letter.value}</div>
               <div className="stats">
                 <div className="dmg">{letter.dmg}</div>
@@ -104,10 +144,23 @@ class Battle extends React.Component {
             </div>
           ))}
         </div>
-        <hr style={{ height: "10px", color: "green" }} />
-        <div className="lexicon">
+
+        <div style={{ height: "95px" }}>
+          <Image
+            src="/ArenaSign.png"
+            className="signs"
+            style={{ marginLeft: "100px" }}
+          ></Image>
+        </div>
+
+        <div className="lexicon opponent">
           {this.state.opponentLexicon.map((letter) => (
-            <div className="letter" key={letter.id}>
+            <div
+              className={
+                letter.class === "opponent" ? "letter opponent" : "letter"
+              }
+              key={letter.id}
+            >
               <div className="value">{letter.value}</div>
               <div className="stats">
                 <div className="dmg">{letter.dmg}</div>
@@ -116,9 +169,13 @@ class Battle extends React.Component {
             </div>
           ))}
         </div>
+        <div style={{ height: "70px" }} />
+
         <Button
           className="end-turn"
-          onClick={() => this.attack()} // Do not remove the anonymous function otherwise it will break
+          onClick={() => this.animate()} // Do not remove the anonymous function otherwise it will break
+          size="lg"
+          variant="success"
         >
           Attack
         </Button>

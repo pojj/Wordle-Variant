@@ -16,7 +16,7 @@ function StatsBar(props) {
         </div>
         <div className="stats-bar" id="wins">
           <Image src="/Trophy.png" />
-          <h1 className="stat-number">{props.wins}/10</h1>
+          <h1 className="stat-number">{props.wins}/7</h1>
         </div>
         <div className="stats-bar" id="round">
           <Image src="/Hourglass.png" />
@@ -37,7 +37,7 @@ function StatsBar(props) {
             Lose→
             <Image
               src="/Heart.png"
-              style={{ width: "30px", position: "relative", top: "-4px" }}
+              style={{ width: "30px", position: "relative", top: "-5px" }}
             />
             {props.lives - Math.ceil(props.round / 2) > 0
               ? props.lives - Math.ceil(props.round / 2)
@@ -46,7 +46,7 @@ function StatsBar(props) {
         </div>
         <div className="stats-bar" id="wins">
           <Image src="/Trophy.png" />
-          <h1 className="stat-number">{props.wins}/10</h1>
+          <h1 className="stat-number">{props.wins}/7</h1>
         </div>
         <div className="stats-bar" id="round">
           <Image src="/Hourglass.png" />

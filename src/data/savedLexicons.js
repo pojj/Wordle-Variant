@@ -92,6 +92,23 @@ const saved = [
         hp: 15,
       },
     ],
+    [
+      {
+        value: "Z",
+        dmg: 36,
+        hp: 20,
+      },
+      {
+        value: "X",
+        dmg: 40,
+        hp: 14,
+      },
+      {
+        value: "N",
+        dmg: 2,
+        hp: 11,
+      },
+    ],
   ],
   [
     [
@@ -227,6 +244,38 @@ const saved = [
         value: "W",
         dmg: 38,
         hp: 16,
+      },
+    ],
+    [
+      {
+        value: "Z",
+        dmg: 36,
+        hp: 20,
+      },
+      {
+        value: "X",
+        dmg: 40,
+        hp: 14,
+      },
+      {
+        value: "N",
+        dmg: 2,
+        hp: 11,
+      },
+      {
+        value: "D",
+        dmg: 4,
+        hp: 8,
+      },
+      {
+        value: "M",
+        dmg: 12,
+        hp: 2,
+      },
+      {
+        value: "G",
+        dmg: 2,
+        hp: 12,
       },
     ],
   ],
@@ -414,6 +463,38 @@ const saved = [
         value: "O",
         dmg: 8,
         hp: 6,
+      },
+    ],
+    [
+      {
+        value: "Z",
+        dmg: 36,
+        hp: 20,
+      },
+      {
+        value: "X",
+        dmg: 40,
+        hp: 14,
+      },
+      {
+        value: "N",
+        dmg: 2,
+        hp: 11,
+      },
+      {
+        value: "D",
+        dmg: 4,
+        hp: 8,
+      },
+      {
+        value: "M",
+        dmg: 12,
+        hp: 2,
+      },
+      {
+        value: "G",
+        dmg: 2,
+        hp: 12,
       },
     ],
   ],
@@ -636,6 +717,53 @@ const saved = [
         value: "H",
         dmg: 16,
         hp: 14,
+      },
+    ],
+    [
+      {
+        value: "Z",
+        dmg: 36,
+        hp: 20,
+      },
+      {
+        value: "X",
+        dmg: 40,
+        hp: 14,
+      },
+      {
+        value: "D",
+        dmg: 4,
+        hp: 8,
+      },
+      {
+        value: "N",
+        dmg: 2,
+        hp: 11,
+      },
+      {
+        value: "M",
+        dmg: 41,
+        hp: 31,
+      },
+      {
+        value: "O",
+        dmg: 39,
+        hp: 35,
+      },
+      {
+        value: "N",
+        dmg: 35,
+        hp: 40,
+      },
+      {
+        value: "G",
+        dmg: 18,
+        hp: 28,
+      },
+      {
+        value: "A",
+        dmg: 2,
+        hp: 4,
       },
     ],
   ],
@@ -878,6 +1006,53 @@ const saved = [
         value: "N",
         dmg: 3,
         hp: 7,
+      },
+    ],
+    [
+      {
+        value: "M",
+        dmg: 12,
+        hp: 2,
+      },
+      {
+        value: "B",
+        dmg: 6,
+        hp: 10,
+      },
+      {
+        value: "E",
+        dmg: 43,
+        hp: 47,
+      },
+      {
+        value: "M",
+        dmg: 78,
+        hp: 69,
+      },
+      {
+        value: "O",
+        dmg: 73,
+        hp: 69,
+      },
+      {
+        value: "N",
+        dmg: 60,
+        hp: 65,
+      },
+      {
+        value: "G",
+        dmg: 52,
+        hp: 62,
+      },
+      {
+        value: "A",
+        dmg: 15,
+        hp: 17,
+      },
+      {
+        value: "D",
+        dmg: 15,
+        hp: 21,
       },
     ],
   ],
@@ -1150,6 +1325,58 @@ const saved = [
         value: "M",
         dmg: 16,
         hp: 2,
+      },
+    ],
+    [
+      {
+        value: "M",
+        dmg: 12,
+        hp: 2,
+      },
+      {
+        value: "B",
+        dmg: 22,
+        hp: 26,
+      },
+      {
+        value: "E",
+        dmg: 25,
+        hp: 29,
+      },
+      {
+        value: "M",
+        dmg: 69,
+        hp: 60,
+      },
+      {
+        value: "A",
+        dmg: 56,
+        hp: 58,
+      },
+      {
+        value: "C",
+        dmg: 44,
+        hp: 50,
+      },
+      {
+        value: "O",
+        dmg: 44,
+        hp: 40,
+      },
+      {
+        value: "N",
+        dmg: 44,
+        hp: 49,
+      },
+      {
+        value: "G",
+        dmg: 2,
+        hp: 12,
+      },
+      {
+        value: "D",
+        dmg: 2,
+        hp: 8,
       },
     ],
   ],
@@ -1447,6 +1674,68 @@ const saved = [
         value: "I",
         dmg: 4,
         hp: 2,
+      },
+    ],
+    [
+      {
+        value: "B",
+        dmg: 40,
+        hp: 44,
+      },
+      {
+        value: "A",
+        dmg: 40,
+        hp: 42,
+      },
+      {
+        value: "C",
+        dmg: 85,
+        hp: 91,
+      },
+      {
+        value: "O",
+        dmg: 94,
+        hp: 90,
+      },
+      {
+        value: "N",
+        dmg: 107,
+        hp: 112,
+      },
+      {
+        value: "E",
+        dmg: 68,
+        hp: 72,
+      },
+      {
+        value: "D",
+        dmg: 40,
+        hp: 46,
+      },
+      {
+        value: "G",
+        dmg: 2,
+        hp: 12,
+      },
+      {
+        value: "M",
+        dmg: 11,
+        hp: 2,
+      },
+      {
+        value: "P",
+        dmg: 14,
+        hp: 22,
+      },
+      {
+        value: "A",
+        dmg: 18,
+        hp: 20,
+      },
+      {
+        value: "M",
+        dmg: 25,
+        hp: 15,
       },
     ],
   ],
@@ -1769,6 +2058,73 @@ const saved = [
         value: "I",
         dmg: 4,
         hp: 2,
+      },
+    ],
+    [
+      {
+        value: "B",
+        dmg: 40,
+        hp: 44,
+      },
+      {
+        value: "A",
+        dmg: 40,
+        hp: 42,
+      },
+      {
+        value: "C",
+        dmg: 85,
+        hp: 91,
+      },
+      {
+        value: "O",
+        dmg: 110,
+        hp: 106,
+      },
+      {
+        value: "N",
+        dmg: 114,
+        hp: 119,
+      },
+      {
+        value: "E",
+        dmg: 75,
+        hp: 79,
+      },
+      {
+        value: "S",
+        dmg: 50,
+        hp: 49,
+      },
+      {
+        value: "D",
+        dmg: 2,
+        hp: 8,
+      },
+      {
+        value: "G",
+        dmg: 2,
+        hp: 12,
+      },
+      {
+        value: "M",
+        dmg: 11,
+        hp: 2,
+      },
+      {
+        value: "P",
+        dmg: 14,
+        hp: 22,
+      },
+      {
+        value: "A",
+        dmg: 18,
+        hp: 20,
+      },
+      {
+        value: "M",
+        dmg: 25,
+        hp: 15,
       },
     ],
   ],
