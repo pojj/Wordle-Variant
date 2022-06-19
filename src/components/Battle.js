@@ -50,9 +50,26 @@ class Battle extends React.Component {
       }
     }
 
+    this.fastForward = this.fastForward.bind(this);
     this.animate = this.animate.bind(this);
     this.attack = this.attack.bind(this);
     this.checkWin = this.checkWin.bind(this);
+  }
+
+  /**
+   * Starts an animation for the first letter every 1.5 seconds
+   * the once the component is rendered for the first time
+   */
+  componentDidMount() {
+    this.setState({ auto: setInterval(this.animate, 1500) });
+  }
+
+  /**
+   * Starts animation every half second
+   */
+  fastForward() {
+    clearInterval(this.state.auto);
+    this.setState({ auto: setInterval(this.animate, 400) });
   }
 
   /**
@@ -79,7 +96,7 @@ class Battle extends React.Component {
   }
 
   /**
-   * Calculates damage to first letters
+   * Calculates damage to the first letters
    * Then runs checkWin()
    */
   attack() {
@@ -106,8 +123,9 @@ class Battle extends React.Component {
   }
 
   /**
-   * Check if lexicon or opponentLexicon if length is 0
+   * Check if lexicon and opponentLexicon if length is 0
    * Then creates popup depending on who won
+   * Also changes gameState
    */
   checkWin() {
     let endBattle = false;
@@ -139,6 +157,7 @@ class Battle extends React.Component {
       endBattle = true;
     }
     if (endBattle) {
+      clearInterval(this.state.auto);
       this.props.increaseRound();
       this.props.setGameState("buy");
     }
@@ -175,6 +194,7 @@ class Battle extends React.Component {
             src="/ArenaSign.png"
             className="signs"
             style={{ marginLeft: "100px" }}
+            draggable="false"
           ></Image>
         </div>
 
@@ -198,11 +218,11 @@ class Battle extends React.Component {
 
         <Button
           className="end-turn"
-          onClick={() => this.animate()} // Do not remove the anonymous function otherwise it will break
+          onClick={() => this.fastForward()} // Do not remove the anonymous function otherwise it will break
           size="lg"
           variant="success"
         >
-          Attack
+          Fast Forward
         </Button>
       </div>
     );

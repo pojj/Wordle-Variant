@@ -12,13 +12,12 @@ import Swal from "sweetalert2";
 
 /**
  * This is the Game component where all the magic for Joustle happens.
- * The Game component does not take any props.
  */
 class Game extends React.Component {
   /**
    * Constructor for the Game component.
    *
-   * @param props Not used.
+   * @param props Contains the settings for the game(constants)
    */
   constructor(props) {
     super(props);
@@ -436,7 +435,7 @@ class Game extends React.Component {
 
   /**
    * Setter method, is passed to the Battle component
-   * Modify state
+   * Modifies state
    *
    * @param newState new value of this.state.gamestate
    */
@@ -446,7 +445,7 @@ class Game extends React.Component {
 
   /**
    * Setter method, is passed to the Battle component
-   * Modfies state, increase round number by 1
+   * Modifies state, increase round number by 1
    *
    */
   increaseRound() {
@@ -455,7 +454,7 @@ class Game extends React.Component {
 
   /**
    * Setter method, is passed to the Battle component
-   * Modfies state, increase wins by 1
+   * Modifies state, increase wins by 1
    *
    */
   increaseWins() {
@@ -464,7 +463,7 @@ class Game extends React.Component {
 
   /**
    * Setter method, is passed to the Battle component
-   * Modfies state, set this.state.lives
+   * Modfiies state, set this.state.lives
    *
    * @param newLives new value of this.state.lives
    */
@@ -515,8 +514,13 @@ class Game extends React.Component {
                 src="/FreezerSign.png"
                 className="signs"
                 style={{ marginRight: "120px" }}
+                draggable="false"
               ></Image>
-              <Image src="/ShopSign.png" className="signs"></Image>
+              <Image
+                src="/ShopSign.png"
+                className="signs"
+                draggable="false"
+              ></Image>
             </div>
             <Lexicon letters={this.state.freezer} id="freezer" />
             <Lexicon

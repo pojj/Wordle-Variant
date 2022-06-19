@@ -1,5 +1,5 @@
 /**
- * Pick random letter in alphabet
+ * Picks a random letter in the alphabet
  *
  * @return A string with length 1
  */

@@ -12,7 +12,7 @@ function Lexicon(props) {
   if (props.letters.includes(undefined)) {
     Swal.fire({
       icon: "error",
-      title: "Stap it",
+      title: "Slow it down!",
       showConfirmButton: false,
       allowOutsideClick: false,
       footer: "<a href=''>I'll take a chill pill</a>",
