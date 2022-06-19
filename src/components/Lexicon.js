@@ -1,12 +1,24 @@
 import React from "react";
 import Letter from "./Letter";
 import { Droppable } from "react-beautiful-dnd";
+import Swal from "sweetalert2";
 
 /**
  * Functional component that contains the droppable component
  * Which contains the individual letters
  */
 function Lexicon(props) {
+  // To stop DnD from dying
+  if (props.letters.includes(undefined)) {
+    Swal.fire({
+      icon: "error",
+      title: "Stap it",
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      footer: "<a href=''>I'll take a chill pill</a>",
+    });
+    return;
+  }
   return (
     <Droppable droppableId={props.id} direction="horizontal">
       {(provided) => (

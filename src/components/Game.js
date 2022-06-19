@@ -117,6 +117,7 @@ class Game extends React.Component {
       this.unfreezeShopLetter(src.index, dest.index);
     }
   }
+
   /**
    * When draggable originates and ends in owned lexicon
    * Modifies state:
