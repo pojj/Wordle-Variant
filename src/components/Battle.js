@@ -106,7 +106,7 @@ class Battle extends React.Component {
   }
 
   /**
-   * Check is lexicon or opponentLexicon if length is 0
+   * Check if lexicon or opponentLexicon if length is 0
    * Then creates popup depending on who won
    */
   checkWin() {
@@ -146,7 +146,7 @@ class Battle extends React.Component {
 
   /**
    * Render function for the Battle component
-   * Contains code reqiured for the the animations
+   * Contains code reqiured for the animations
    */
   render() {
     return (

@@ -4,8 +4,8 @@ import { Droppable } from "react-beautiful-dnd";
 import Swal from "sweetalert2";
 
 /**
- * Functional component that contains the droppable component
- * Which contains the individual letters
+ * Functional component that contains the Droppable component
+ * Which contains the individual Draggable letters
  */
 function Lexicon(props) {
   // To stop DnD from dying

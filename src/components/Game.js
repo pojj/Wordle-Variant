@@ -11,7 +11,7 @@ import { Button, Image } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 /**
- * This is the Game component where all the magic for --Insert Creative Name-- happens.
+ * This is the Game component where all the magic for Joustle happens.
  * The Game component does not take any props.
  */
 class Game extends React.Component {
@@ -52,12 +52,12 @@ class Game extends React.Component {
     this.freezeShopLetter = this.freezeShopLetter.bind(this);
     this.unfreezeShopLetter = this.unfreezeShopLetter.bind(this);
 
-    // These are methods that the user starts on button presses
+    // These are methods that the user calls on button presses
     this.roll = this.roll.bind(this);
     this.endTurn = this.endTurn.bind(this);
     this.buffLetters = this.buffLetters.bind(this);
 
-    // These are callback functions so the Battle component can callback to game
+    // These are callback functions so the Battle component can callback to Game
     this.setGameState = this.setGameState.bind(this);
     this.increaseRound = this.increaseRound.bind(this);
     this.increaseWins = this.increaseWins.bind(this);
@@ -66,7 +66,7 @@ class Game extends React.Component {
 
   /**
    * This method runs after the Game component is rendered the first time.
-   * It populates to shop with random letters
+   * It populates the shop with random letters
    */
   componentDidMount() {
     this.roll();
@@ -167,7 +167,7 @@ class Game extends React.Component {
    * When draggable originates in shop and ends in lexicon
    * Modifies state:
    * -Remove letter from this.state.shopLexicon
-   * -Add letter ato this.state.lexicon
+   * -Add letter to this.state.lexicon
    * -Removes 3 from this.state.money
    *
    * @param indexI intial index of dragged item
@@ -436,7 +436,7 @@ class Game extends React.Component {
 
   /**
    * Setter method, is passed to the Battle component
-   * Modfiys state
+   * Modify state
    *
    * @param newState new value of this.state.gamestate
    */
@@ -446,7 +446,7 @@ class Game extends React.Component {
 
   /**
    * Setter method, is passed to the Battle component
-   * Modfiys state, increase round number by 1
+   * Modfies state, increase round number by 1
    *
    */
   increaseRound() {
@@ -455,7 +455,7 @@ class Game extends React.Component {
 
   /**
    * Setter method, is passed to the Battle component
-   * Modfiys state, increase wins by 1
+   * Modfies state, increase wins by 1
    *
    */
   increaseWins() {
@@ -464,7 +464,7 @@ class Game extends React.Component {
 
   /**
    * Setter method, is passed to the Battle component
-   * Modfiys state
+   * Modfies state, set this.state.lives
    *
    * @param newLives new value of this.state.lives
    */

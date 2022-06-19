@@ -4,6 +4,7 @@ import { Draggable } from "react-beautiful-dnd";
 
 /**
  * Functional component that is the Draggable Letter
+ * Also contains the css for the Letter
  */
 function Letter(props) {
   return (

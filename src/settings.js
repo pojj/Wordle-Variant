@@ -1,3 +1,4 @@
+// The constants for the game
 const settings = {
   startingLives: 10,
   startingMoney: 10,
