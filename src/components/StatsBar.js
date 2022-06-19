@@ -2,6 +2,10 @@ import React from "react";
 import "./Game.css";
 import { Image } from "react-bootstrap";
 
+/**
+ * Functional component that contains the stats bar
+ * Changes depending gameState passed in
+ */
 function StatsBar(props) {
   if (props.gameState === "buy") {
     return (

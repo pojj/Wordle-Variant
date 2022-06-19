@@ -1,5 +1,11 @@
 import words from "../data/words";
 
+/**
+ * Function that uses a binary search to look through a list of words
+ * to determine if target is a valide english word
+ *
+ * @return boolean If letter combination is a word or not
+ */
 function isValidWord(target, min, max) {
   // base case
   if (max >= min) {

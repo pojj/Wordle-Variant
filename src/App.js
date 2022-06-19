@@ -3,6 +3,11 @@ import settings from "./settings";
 import Game from "./components/Game";
 import "./components/Game.css";
 
+/**
+ * Final project for CS 12
+ * A super auto pets and wordle parody
+ * by William
+ */
 function App() {
   return (
     <div>

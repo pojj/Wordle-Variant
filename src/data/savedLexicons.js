@@ -1,3 +1,4 @@
+// Array with past battles
 const saved = [
   [
     [

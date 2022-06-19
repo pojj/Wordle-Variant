@@ -2,6 +2,10 @@ import React from "react";
 import Letter from "./Letter";
 import { Droppable } from "react-beautiful-dnd";
 
+/**
+ * Functional component that contains the droppable component
+ * Which contains the individual letters
+ */
 function Lexicon(props) {
   return (
     <Droppable droppableId={props.id} direction="horizontal">

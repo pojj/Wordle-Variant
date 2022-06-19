@@ -1,3 +1,8 @@
+/**
+ * Pick random letter in alphabet
+ *
+ * @return A string with length 1
+ */
 function randomLetter() {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 

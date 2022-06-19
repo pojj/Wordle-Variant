@@ -5,7 +5,16 @@ import { Button, Image } from "react-bootstrap";
 import saved from "../data/savedLexicons";
 import Swal from "sweetalert2";
 
+/**
+ * This is the Battle component that runs when gameState is "battle"
+ * All the beautiful animations happen here
+ */
 class Battle extends React.Component {
+  /**
+   * Constructor for the Battle component
+   *
+   * @param props Takes in Game's state as well as the setter methods to modify Game.state
+   */
   constructor(props) {
     super(props);
 
@@ -46,6 +55,10 @@ class Battle extends React.Component {
     this.checkWin = this.checkWin.bind(this);
   }
 
+  /**
+   * Starts animation for the first letter
+   * Then queues attack to run after 0.3 seconds
+   */
   animate() {
     if (
       this.state.lexicon.length > 0 &&
@@ -65,6 +78,10 @@ class Battle extends React.Component {
     }
   }
 
+  /**
+   * Calculates damage to first letters
+   * Then runs checkWin()
+   */
   attack() {
     if (
       this.state.lexicon.length > 0 &&
@@ -88,6 +105,10 @@ class Battle extends React.Component {
     }
   }
 
+  /**
+   * Check is lexicon or opponentLexicon if length is 0
+   * Then creates popup depending on who won
+   */
   checkWin() {
     let endBattle = false;
     if (
@@ -123,6 +144,10 @@ class Battle extends React.Component {
     }
   }
 
+  /**
+   * Render function for the Battle component
+   * Contains code reqiured for the the animations
+   */
   render() {
     return (
       <div className="game">

@@ -10,10 +10,20 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { Button, Image } from "react-bootstrap";
 import Swal from "sweetalert2";
 
+/**
+ * This is the Game component where all the magic for --Insert Creative Name-- happens.
+ * The Game component does not take any props.
+ */
 class Game extends React.Component {
+  /**
+   * Constructor for the Game component.
+   *
+   * @param props Not used.
+   */
   constructor(props) {
     super(props);
 
+    // All "instance variables" Game needs
     this.state = {
       gameState: "buy",
       lives: props.startingLives,
@@ -30,7 +40,7 @@ class Game extends React.Component {
       wins: 0,
     };
 
-    // These handle what happens at end of drags
+    // These are methods that handle what happens at the end of drags
     this.onDragEnd = this.onDragEnd.bind(this);
     this.reorderLexicon = this.reorderLexicon.bind(this);
     this.reorderShop = this.reorderShop.bind(this);
@@ -42,21 +52,31 @@ class Game extends React.Component {
     this.freezeShopLetter = this.freezeShopLetter.bind(this);
     this.unfreezeShopLetter = this.unfreezeShopLetter.bind(this);
 
+    // These are methods that the user starts on button presses
     this.roll = this.roll.bind(this);
     this.endTurn = this.endTurn.bind(this);
     this.buffLetters = this.buffLetters.bind(this);
 
-    // These are callback functions so battle can call back to game
+    // These are callback functions so the Battle component can callback to game
     this.setGameState = this.setGameState.bind(this);
     this.increaseRound = this.increaseRound.bind(this);
     this.increaseWins = this.increaseWins.bind(this);
     this.setLives = this.setLives.bind(this);
   }
 
+  /**
+   * This method runs after the Game component is rendered the first time.
+   * It populates to shop with random letters
+   */
   componentDidMount() {
     this.roll();
   }
 
+  /**
+   * This method is called by the drag handler on drag end
+   *
+   * @param result contains details about the completed drag
+   */
   onDragEnd(result) {
     const src = result.source;
     const dest = result.destination;
@@ -68,6 +88,7 @@ class Game extends React.Component {
       return;
     }
 
+    // run correct method depending on where drag started and ended
     if (src.droppableId === "owned" && dest.droppableId === "owned") {
       this.reorderLexicon(src.index, dest.index);
     }
@@ -96,7 +117,14 @@ class Game extends React.Component {
       this.unfreezeShopLetter(src.index, dest.index);
     }
   }
-
+  /**
+   * When draggable originates and ends in owned lexicon
+   * Modifies state:
+   * -Reorders this.state.lexicon
+   *
+   * @param indexI intial index of dragged item
+   * @param indexF final index of dragged item
+   */
   reorderLexicon(indexI, indexF) {
     const newLex = Array.from(this.state.lexicon);
     const [movedLetter] = newLex.splice(indexI, 1);
@@ -104,6 +132,14 @@ class Game extends React.Component {
     this.setState({ lexicon: newLex });
   }
 
+  /**
+   * When draggable originates and ends in the shop
+   * Modifies state:
+   * -Reorders this.state.shopLexicon
+   *
+   * @param indexI intial index of dragged item
+   * @param indexF final index of dragged item
+   */
   reorderShop(indexI, indexF) {
     const newShop = Array.from(this.state.shopLexicon);
     const [movedLetter] = newShop.splice(indexI, 1);
@@ -111,6 +147,14 @@ class Game extends React.Component {
     this.setState({ shopLexicon: newShop });
   }
 
+  /**
+   * When draggable originates and ends in the freezer
+   * Modifies state:
+   * -Reorders this.state.freezer
+   *
+   * @param indexI intial index of dragged item
+   * @param indexF final index of dragged item
+   */
   reorderFreezer(indexI, indexF) {
     const newFreezer = Array.from(this.state.freezer);
     const [movedLetter] = newFreezer.splice(indexI, 1);
@@ -118,6 +162,16 @@ class Game extends React.Component {
     this.setState({ freezer: newFreezer });
   }
 
+  /**
+   * When draggable originates in shop and ends in lexicon
+   * Modifies state:
+   * -Remove letter from this.state.shopLexicon
+   * -Add letter ato this.state.lexicon
+   * -Removes 3 from this.state.money
+   *
+   * @param indexI intial index of dragged item
+   * @param indexF final index of dragged item
+   */
   buyLetter(indexI, indexF) {
     if (this.state.money >= 3) {
       if (this.state.lexicon.length < this.state.lexiconSize) {
@@ -144,6 +198,16 @@ class Game extends React.Component {
     }
   }
 
+  /**
+   * When draggable originates in freezer and ends in lexicon
+   * Modifies state:
+   * -Remove letter from this.state.freezer
+   * -Add letter to this.state.lexicon
+   * -Removes 3 from this.state.money
+   *
+   * @param indexI intial index of dragged item
+   * @param indexF final index of dragged item
+   */
   buyFrozen(indexI, indexF) {
     if (this.state.money >= 3) {
       if (this.state.lexicon.length < this.state.lexiconSize) {
@@ -170,6 +234,16 @@ class Game extends React.Component {
     }
   }
 
+  /**
+   * When draggable originates in lexicon and ends in shop
+   * Modifies state:
+   * -Remove letter from this.state.lexicon
+   * -Add letter to this.state.shopLexicon
+   * -Add 1 to this.state.money
+   *
+   * @param indexI intial index of dragged item
+   * @param indexF final index of dragged item
+   */
   sellLetter(indexI, indexF) {
     const newLex = Array.from(this.state.lexicon);
     const newShop = Array.from(this.state.shopLexicon);
@@ -182,6 +256,16 @@ class Game extends React.Component {
     });
   }
 
+  /**
+   * When draggable originates in lexicon and ends in freezer
+   * Modifies state:
+   * -Remove letter from this.state.lexicon
+   * -Add letter to this.state.freezer
+   * -Add 1 to this.state.money
+   *
+   * @param indexI intial index of dragged item
+   * @param indexF final index of dragged item
+   */
   freezeLexiconLetter(indexI, indexF) {
     if (this.state.freezer.length < this.state.freezerSize) {
       const newLex = Array.from(this.state.lexicon);
@@ -201,6 +285,15 @@ class Game extends React.Component {
     }
   }
 
+  /**
+   * When draggable originates in shop and ends in freezer
+   * Modifies state:
+   * -Remove letter from this.state.shopLexicon
+   * -Add letter to this.state.freezer
+   *
+   * @param indexI intial index of dragged item
+   * @param indexF final index of dragged item
+   */
   freezeShopLetter(indexI, indexF) {
     if (this.state.freezer.length < this.state.freezerSize) {
       const newShop = Array.from(this.state.shopLexicon);
@@ -219,6 +312,15 @@ class Game extends React.Component {
     }
   }
 
+  /**
+   * When draggable originates in freezer and ends in shop
+   * Modifies state:
+   * -Remove letter from this.state.freezer
+   * -Add letter to this.state.shopLexicon
+   *
+   * @param indexI intial index of dragged item
+   * @param indexF final index of dragged item
+   */
   unfreezeShopLetter(indexI, indexF) {
     const newShop = Array.from(this.state.shopLexicon);
     const newFreezer = Array.from(this.state.freezer);
@@ -230,6 +332,10 @@ class Game extends React.Component {
     });
   }
 
+  /**
+   * Randomizes letters in this.state.shopLexicon
+   * Fill shop with shopLength - freezer.length number of letters
+   */
   roll() {
     if (this.state.money > 0) {
       const newLetters = []; // const means variable cannot be redefined, can be modified.
@@ -262,6 +368,10 @@ class Game extends React.Component {
     }
   }
 
+  /**
+   * Runs when user presses "end turn" button
+   * Changes gameState to "battle" and preps for next "buy" gameState
+   */
   endTurn() {
     const newLex = this.buffLetters();
 
@@ -290,12 +400,18 @@ class Game extends React.Component {
       },
       // I can't even remove this stupid anonymous function without it breaking >:(
       () => {
-        this.roll(); // there is an inefficency here it renders once before this on the setState
-        // and again when this.roll is ran
+        this.roll();
       }
     );
   }
 
+  /**
+   * Is called by endTurn()
+   * Checks all letter combinations for if they are a word if so then gives them
+   * extra stat points depending on the length of the word
+   *
+   * @return newLex Array containing lexicon with bonus stats
+   */
   buffLetters() {
     // Clone newLex only keeping revelant properties
     const newLex = this.state.lexicon.map((item) => {
@@ -317,19 +433,48 @@ class Game extends React.Component {
     return newLex;
   }
 
+  /**
+   * Setter method, is passed to the Battle component
+   * Modfiys state
+   *
+   * @param newState new value of this.state.gamestate
+   */
   setGameState(newState) {
     this.setState({ gameState: newState });
   }
+
+  /**
+   * Setter method, is passed to the Battle component
+   * Modfiys state, increase round number by 1
+   *
+   */
   increaseRound() {
     this.setState({ round: this.state.round + 1 });
   }
+
+  /**
+   * Setter method, is passed to the Battle component
+   * Modfiys state, increase wins by 1
+   *
+   */
   increaseWins() {
     this.setState({ wins: this.state.wins + 1 });
   }
+
+  /**
+   * Setter method, is passed to the Battle component
+   * Modfiys state
+   *
+   * @param newLives new value of this.state.lives
+   */
   setLives(newLives) {
     this.setState({ lives: newLives });
   }
 
+  /**
+   * Render function for the Game component
+   * Is supposed to run everytime state is changed
+   */
   render() {
     if (this.state.wins >= 7) {
       Swal.fire({
