@@ -11,16 +11,14 @@ import "./components/Game.css";
 function App() {
   return (
     <div>
-      <div
+      <img
         style={{
-          textAlign: "center",
-          fontSize: "50px",
-          fontWeight: "700",
-          margin: "10px",
+          display: "block",
+          margin: "10px auto 10px auto",
         }}
-      >
-        Joustle
-      </div>
+        src="./Joustle.png"
+        draggable="false"
+      />
       {/* Give settings as props to the game */}
       <Game {...settings}></Game>
     </div>
