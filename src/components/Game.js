@@ -17,12 +17,12 @@ class Game extends React.Component {
   /**
    * Constructor for the Game component.
    *
-   * @param props Contains the settings for the game(constants)
+   * @param props JSON object, Contains the settings for the game(constants)
    */
   constructor(props) {
     super(props);
 
-    // All "instance variables" Game needs
+    // All the "instance variables" that Game needs
     this.state = {
       gameState: "buy",
       lives: props.startingLives,
@@ -64,7 +64,7 @@ class Game extends React.Component {
   }
 
   /**
-   * This method runs after the Game component is rendered the first time.
+   * This method runs when the Game component is rendered the first time.
    * It populates the shop with random letters
    */
   componentDidMount() {
@@ -446,7 +446,6 @@ class Game extends React.Component {
   /**
    * Setter method, is passed to the Battle component
    * Modifies state, increase round number by 1
-   *
    */
   increaseRound() {
     this.setState({ round: this.state.round + 1 });
@@ -455,7 +454,6 @@ class Game extends React.Component {
   /**
    * Setter method, is passed to the Battle component
    * Modifies state, increase wins by 1
-   *
    */
   increaseWins() {
     this.setState({ wins: this.state.wins + 1 });
@@ -504,6 +502,7 @@ class Game extends React.Component {
           <StatsBar {...this.state} />
           <div style={{ height: "230px" }} />
           <DragDropContext onDragEnd={this.onDragEnd}>
+            {/* Every Lexicon component contains the Droppable component */}
             <Lexicon
               letters={this.state.lexicon}
               id="owned"

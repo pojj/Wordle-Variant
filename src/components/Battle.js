@@ -13,7 +13,7 @@ class Battle extends React.Component {
   /**
    * Constructor for the Battle component
    *
-   * @param props Takes in Game's state as well as the setter methods to modify Game.state
+   * @param props JSON object, Takes in Game's state as well as the setter methods to modify the game's state
    */
   constructor(props) {
     super(props);
@@ -65,7 +65,7 @@ class Battle extends React.Component {
   }
 
   /**
-   * Starts animation every half second
+   * Starts animation every 400 milli seconds
    */
   fastForward() {
     clearInterval(this.state.auto);
@@ -123,7 +123,7 @@ class Battle extends React.Component {
   }
 
   /**
-   * Check if lexicon and opponentLexicon if length is 0
+   * Check if lexicon and opponentLexicon is length 0
    * Then creates popup depending on who won
    * Also changes gameState
    */
