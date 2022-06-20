@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Joustle
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Joustle is an asynchronous multiplayer PvP game inspired by Super Auto Pets, Scrabble, and Wordle. In Joustle, players construct words that go head-to-head in battle. Each letter has its own strengths based on its rarity, and forming coherent words enhances combat power through multipliers dependent on word length and uniqueness. Victory depends on your linguistic skill and strategic decision-making as you buy letters from the shop, make use of the freezer, and budget your money accordingly to construct powerful words.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Asynchronous Multiplayer PvP:** Battle players from around the world in word-based combat, where timing isn’t crucial, and you can take turns at your own pace.
 
-### `npm start`
+- **Letter Rarity System:** Less common letters (e.g., Q, X, Z) have stronger attack power, giving you an incentive to craft unique and difficult words.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Word-Based Multipliers:** Forming complete words grants powerful multipliers, allowing clever players to dominate battles.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Dynamic Shop:** Purchase letters from a random shop, strategize which letters to buy, and form the best possible word combinations to fight with.
 
-### `npm test`
+- **Drag and Drop:** Beautiful, intuitive drag-and-drop mechanics powered by React, making word-building easy and enjoyable.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Responsive UI:** Fully responsive design using Bootstrap, ensuring that the game looks great and functions smoothly on any device.
 
-### `npm run build`
+- **Data Persistence:** All game data is stored in JSON format, ensuring quick access and scalability.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- NodeJS
+- ReactJS
+- React Beautiful DnD
+- Bootstrap
+- JSON
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Setup
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Node.js
+- npm
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1.  Clone the Repository:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    ```
+    git clone https://github.com/pojj/wordle-variant.git`
+    ```
 
-## Learn More
+2.  Navigate to the Project Directory:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ```
+    cd wordle-variant
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3.  Install Dependencies:
 
-### Code Splitting
+    ```
+    npm install
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4.  Run the Development Server:
 
-### Analyzing the Bundle Size
+    ```
+    npm run dev
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5.  Open http://localhost:3000 in your browser to access the game.
