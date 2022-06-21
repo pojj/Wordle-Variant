@@ -31,3 +31,58 @@ function isValidWord(target, min, max) {
 }
 
 export default isValidWord;
+
+/**
+ * Trie data structure for even faster word validation
+ * Not used
+ */
+class TrieNode {
+  constructor() {
+    this.children = {};
+    this.isEndOfWord = false;
+  }
+}
+
+class Trie {
+  constructor() {
+    this.root = new TrieNode();
+  }
+
+  /**
+   * Insert a word into the Trie
+   * @param {string} word
+   */
+  insert(word) {
+    let node = this.root;
+    for (let char of word) {
+      if (!node.children[char]) {
+        node.children[char] = new TrieNode();
+      }
+      node = node.children[char];
+    }
+    node.isEndOfWord = true;
+  }
+
+  /**
+   * Check if a word is valid in the Trie
+   * @param {string} word
+   * @return {boolean} If word is a valid word in the Trie
+   */
+  isValidWord(word) {
+    let node = this.root;
+    for (let char of word) {
+      if (!node.children[char]) {
+        return false;
+      }
+      node = node.children[char];
+    }
+    return node.isEndOfWord; // Return true only if it's the end of a valid word
+  }
+}
+
+// const trie = new Trie();
+
+// // Insert words into the Trie
+// for (let word of words) {
+//   trie.insert(word);
+// }
